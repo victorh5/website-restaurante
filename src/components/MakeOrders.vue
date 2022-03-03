@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import ActionsOrder from './ActionsOrder.vue'
 import Swal from 'sweetalert2'
-// import axios from 'axios';
 import { reactive } from 'vue';
 
 const info_pedido = reactive({
@@ -10,15 +10,15 @@ const info_pedido = reactive({
   tipoPagamento: null,
 });
 
-async function realizaPedido() {
-  // const response = await axios.post("/realizar-pedido", info_pedido)
+const makeOrder = () => {
   Swal.fire(
-  'Bom trabalho!',
-  'Pedido adicionado a lista.',
-  'success'
-)
+    'Bom trabalho!',
+    'Pedido adicionado a lista.',
+    'success'
+  )
+  clearOrder()
 }
-function cancelaPedido() {
+const clearOrder = () => {
   Object.assign(info_pedido, {
     tipoPedido: null,
     nomeCliente: '',
@@ -48,9 +48,10 @@ function cancelaPedido() {
         <option>Convênio</option>
       </select>
     </div>
-    <div class="acoes-pedido">
-      <button @click="realizaPedido">Realizar Pedido</button>
-      <button @click="cancelaPedido">Cancelar Pedido</button>
-    </div>
+    <ActionsOrder 
+      :info_pedido="info_pedido"
+      @make_order="makeOrder"
+      @cancel_order="clearOrder"
+    />
   </div>
 </template>
