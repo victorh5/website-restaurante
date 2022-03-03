@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import RealizaPedidos from "./components/RealizaPedidos.vue"
+import MakeOrders from "./components/MakeOrders.vue"
 </script>
 
 <template>
-  <RealizaPedidos />
+  <MakeOrders />
 </template>
